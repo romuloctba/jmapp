@@ -14,7 +14,7 @@ var app = express();
 /*
 Database and Models
 */
-mongoose.connect(" mongodb://jmapp:ppy5tamj@ds033429.mongolab.com:33429/jmprojetos");
+mongoose.connect("mongodb://jmapp:ppy5tamj@ds033429.mongolab.com:33429/jmprojetos");
 
 
 
