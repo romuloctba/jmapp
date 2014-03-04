@@ -165,7 +165,6 @@ exports.projetosave = function(req, res){
     	
     }); 
 }
-
 exports.projetodelete = function(req, res){
 	var projeto = req.params.id;
 	console.log('id eh    ' + projeto);
