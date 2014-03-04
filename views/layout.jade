@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title Jmsystem System
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
+  body
+    style.
+      body { padding-top: 20px; }
+    ul.container.nav.nav-pills
+      li
+        a(href="/") Home
+      li
+        a(href="/todosJobs") Projetos
+      li
+        a(href="/novoProjeto") Novo Projeto
+      li
+        if (typeof(user) !== 'undefined')
+          a(href="/logout") Logout
+        else
+          a(href="/login") Login
+    style.
+      .jumbotron { margin-top: 20px; }
+    div.container
+      div.row
+        block content

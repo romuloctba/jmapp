@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  div.page-header
+    h1= title
+    h3
+      !=message
+  form(id="novoProjeto", method="post", action="/novoProjeto")
+    div.form-group
+      label(for="nome") Nome do Projeto  
+      input#nome.form-control(type="text", name="nome")
+    div.form-group
+      label(for="cliente") Nome do Cliente  
+      input#cliente.form-control(type="text", name="cliente")
+    div.form-group
+      label(for="deadline") Prazo de Entrega  
+      input#deadline.form-control(type="date", name="deadline")
+    div.form-group
+      label(for="briefing") Briefing/Descrição  
+      textarea#briefing.form-control(type="text", name="briefing")
+    input.btn.btn-info(type="submit", value="Salvar")

@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  div.page-header
+    h1= title
+    p
+      !=message
+    if (typeof(user) !== 'undefined')
+      if user.username
+        p.small.text-success Você está logado como #{user.username}
+        a.btn.btn-info(href="/novoProjeto") Inserir Projeto
+        span &nbsp;ou    
+        a.btn.btn-warning(href="/todosJobs") &larr; Voltar
+    else
+      a.btn.btn-info(href="/login") Login 
+      span   ou 
+      a.btn.btn-success(href="/signup") Assine
+  ul.list-group
+   if (typeof(docs) !== 'undefined')
+     li.list-group-item
+       span.text-success Projeto: &nbsp;
+       !=docs.nome
+       br
+       small Cliente&nbsp;
+         !=docs.cliente
+       p
+       p Briefing&nbsp;
+         !=docs.briefing
+          

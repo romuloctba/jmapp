@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  style.
+    .jumbotron { margin-top: 20px }
+  div.jumbotron
+    h2 Faça seu Login
+    form(id="login", method="post", action="/login")
+      div.form-group
+        label(for="username") User Name  
+        input#username.form-control(type="text", name="username")
+      div.form-group
+        label(for="password") Password  
+        input#password.form-control(type="password", name="password")
+      input.btn.btn-info(type="submit", value="Login")
+    div
+      br
+      !=message

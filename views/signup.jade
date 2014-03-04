@@ -1,0 +1,17 @@
+extends layout
+
+block content
+ style.
+    .jumbotron { margin-top: 20px }
+  div.jumbotron
+    h3 Faça seu cadastro
+    form(id="signup", method="POST", action="/signup")
+      div.form-group
+        label(for="username") Username
+        input.form-control#username(type="text", name="username")
+      div.form-group
+        label(for="password") Password
+        input.form-control#password(type="password", name="password")
+      input.btn.btn-info(type="submit", value="inscreva-se")
+  
+  h1!=message
