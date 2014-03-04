@@ -14,7 +14,7 @@ var app = express();
 /*
 Database and Models
 */
-mongoose.connect("mongodb://jmapp:ppy5tamj@ds033429.mongolab.com:33429/jmprojetos");
+mongoose.connect("mongodb://localhost/jmapp");
 
 
 
@@ -23,7 +23,7 @@ Middlewares and configurations
 */
 app.configure(function () {
     app.use(express.bodyParser());
-    app.use(express.cookieParser('Authentication Tutorial '));
+    app.use(express.cookieParser('jmsystem-cookie'));
     app.use(express.session());
     app.use(express.static(path.join(__dirname, 'public')));
     app.set('views', __dirname + '/views');
@@ -55,4 +55,7 @@ app.get('/todosJobs', myFunctions.requiredAuthentication, routes.todosJobs);
 app.get('/novoProjeto', myFunctions.requiredAuthentication, routes.novoProjeto);
 app.post('/novoProjeto', myFunctions.requiredAuthentication, routes.criaprojeto);
 app.get('/projeto/:id', myFunctions.requiredAuthentication, routes.projeto);
+app.get('/projeto/edit/:id', myFunctions.requiredAuthentication, routes.projetoedit);
+app.post('/projetosave', myFunctions.requiredAuthentication, routes.projetosave);
+app.get('/projeto/delete/:id', myFunctions.requiredAuthentication, routes.projetodelete);
 http.createServer(app).listen(3000);

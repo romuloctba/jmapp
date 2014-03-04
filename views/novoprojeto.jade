@@ -5,17 +5,22 @@ block content
     h1= title
     h3
       !=message
-  form(id="novoProjeto", method="post", action="/novoProjeto")
+  - var caminho1 = '/projetosave'
+  - var caminho2 = '/novoProjeto'
+  form(id="novoProjeto", method="post", action=(editmode ? caminho1 : caminho2))
     div.form-group
       label(for="nome") Nome do Projeto  
-      input#nome.form-control(type="text", name="nome")
+      input#nome.form-control(type="text", name="nome" value=(editmode ? docs.nome : false))
     div.form-group
-      label(for="cliente") Nome do Cliente  
-      input#cliente.form-control(type="text", name="cliente")
+      label(for="cliente") E-Mail do Cliente  
+      input#cliente.form-control(type="email", required, name="cliente" value=(editmode ? docs.cliente : false))
     div.form-group
       label(for="deadline") Prazo de Entrega  
-      input#deadline.form-control(type="date", name="deadline")
+      input#deadline.form-control(type="date", name="deadline" value=(editmode ? docs.deadline : false))
     div.form-group
       label(for="briefing") Briefing/Descrição  
-      textarea#briefing.form-control(type="text", name="briefing")
+      textarea#briefing.form-control(type="text", name="briefing" spellcheck="true" rows="8")
+        !=editmode ? docs.briefing : Digite
+    div.form-group
+      input#ide.form-control(type="hidden", name="ide" value=(editmode ? docs._id : false))
     input.btn.btn-info(type="submit", value="Salvar")

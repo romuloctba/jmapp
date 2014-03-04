@@ -116,3 +116,71 @@ exports.projeto = function(req, res) {
 	})
 	});
 }
+exports.projetoedit = function(req, res) {
+	var projeto = req.params.id;
+	Projeto.findOne({_id: projeto }, function(err, docs){
+	res.render('novoprojeto', {
+		id: docs._id,
+		editmode: true,
+		docs: docs,
+		user: req.session.user,
+		message: 'Editando ' + docs.nome
+	})
+	});
+}
+exports.projetosave = function(req, res){
+	var nome = req.body.nome,
+	 cliente = req.body.cliente,
+	 criadopor = req.session.user.username,
+     deadline = req.body.deadline,
+     briefing = req.body.briefing;
+     var ide = req.body.ide;
+	 
+	var projeto = new Projeto({
+	nome : nome,
+	cliente : cliente,
+	criadopor : criadopor,
+    deadline : deadline,
+    briefing : briefing,
+    ide: ide
+    });
+    var upsertData = projeto.toObject();
+    delete upsertData._id;
+    Projeto.update({_id: ide}, upsertData, function(err, salvei){
+    	if (err) throw err;
+    	if(salvei) {
+    		Projeto.find({}, function(err, docs){
+    			if (err) throw err;
+    			else {
+    		res.render('todosjobs', {
+    			message: "<strong>Atualizado</strong> com sucesso",
+    			user: req.session.user,
+    			title: 'Projeto Atualizado',
+    			docs: docs
+    			});		
+    			}
+    		});
+    		
+    	}
+    	
+    }); 
+}
+
+exports.projetodelete = function(req, res){
+	var projeto = req.params.id;
+	console.log('id eh    ' + projeto);
+	Projeto.remove({_id: projeto}, function(error, result){
+		if (error) throw error;
+		if(result) { 
+			Projeto.find({}, function(err, docs){
+			res.render('todosjobs', {
+    			message: "<strong>Apagado</strong> com sucesso",
+    			user: req.session.user,
+    			title: 'Projeto APAGADO (para sempre)',
+    			docs: docs
+    			});	
+			})
+				
+			}
+	})
+}

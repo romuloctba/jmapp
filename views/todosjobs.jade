@@ -20,10 +20,15 @@ block content
     each doc in docs
       li.list-group-item
         span.text-success Projeto: &nbsp;
-        !=doc.nome
-        a(href='/projeto/#{doc._id}') &nbsp;
-          span.glyphicon.glyphicon-edit &nbsp;
-        br
+        a(href='/projeto/#{doc._id}' title="Detalhes")
+          !=doc.nome
+        &nbsp; | &nbsp;
+        span.pull-right
+          a.text-success(href='/projeto/edit/#{doc._id}' title="Editar") &nbsp;
+            span.glyphicon.glyphicon-edit &nbsp;
+          a.text-danger(href='/projeto/delete/#{doc._id}' onclick="return confirm('Cara, vc tem CERTEZA que vc quer DELETAR esse job?')" title="Apagar") &nbsp;
+            span.glyphicon.glyphicon-remove &nbsp;
         small Cliente&nbsp;
-          !=doc.cliente
+          a(href="mailto://#{doc.cliente}")
+            !=doc.cliente
           
