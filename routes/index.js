@@ -80,7 +80,7 @@ exports.loginpost = function (req, res) {
 
             req.session.regenerate(function () {
                 req.session.user = user;
-                req.session.success = 'Autenticado como ' + user.username + '. <a href="/logout">logout</a>. ' + ' You may now access <a href="/restricted">/restricted</a>.';
+                req.session.success = 'Autenticado como ' + user.username;
                 res.redirect('/');
             });
         } else {

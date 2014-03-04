@@ -23,6 +23,11 @@ block content
        br
        small Cliente&nbsp;
          !=docs.cliente
+       span.pull-right
+          a.text-success(href='/projeto/edit/#{docs._id}' title="Editar") &nbsp;
+            span.glyphicon.glyphicon-edit &nbsp;
+          a.text-danger(href='/projeto/delete/#{docs._id}' onclick="return confirm('Cara, vc tem CERTEZA que vc quer DELETAR esse job?')" title="Apagar") &nbsp;
+            span.glyphicon.glyphicon-remove &nbsp;
        p
        p Briefing&nbsp;
          !=docs.briefing
